@@ -7,7 +7,6 @@ import {
   useImperativeHandle,
 } from "react";
 import { useParams } from "react-router";
-import { useWindowSize } from "@/app/utils";
 import { IconButton } from "./button";
 import { nanoid } from "nanoid";
 import ExportIcon from "../icons/share.svg";
@@ -30,11 +29,11 @@ type HTMLPreviewProps = {
   onLoad?: (title?: string) => void;
 };
 
-export type HTMLPreviewHander = {
+export type HTMLPreviewHandler = {
   reload: () => void;
 };
 
-export const HTMLPreview = forwardRef<HTMLPreviewHander, HTMLPreviewProps>(
+export const HTMLPreview = forwardRef<HTMLPreviewHandler, HTMLPreviewProps>(
   function HTMLPreview(props, ref) {
     const iframeRef = useRef<HTMLIFrameElement>(null);
     const [frameId, setFrameId] = useState<string>(nanoid());
@@ -208,7 +207,7 @@ export function Artifacts() {
   const [code, setCode] = useState("");
   const [loading, setLoading] = useState(true);
   const [fileName, setFileName] = useState("");
-  const previewRef = useRef<HTMLPreviewHander>(null);
+  const previewRef = useRef<HTMLPreviewHandler>(null);
 
   useEffect(() => {
     if (id) {
